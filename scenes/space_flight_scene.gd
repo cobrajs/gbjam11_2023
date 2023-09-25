@@ -11,6 +11,8 @@ extends Node2D
 
 @onready var FallingBlockPre := preload("res://game_objects/falling_block.tscn")
 
+@onready var timer := $Timer
+
 var debris_count := 10
 
 func _ready():
@@ -31,15 +33,12 @@ func add_falling_block():
 	var falling_block: FallingBlock = FallingBlockPre.instantiate()
 	var size := get_viewport().get_visible_rect().size
 	falling_block.position.x = -randi_range(5, 20)
-	falling_block.position.y = randi_range(10, size.y - 10)
+	falling_block.position.y = randi_range(20, size.y - 20)
 	#falling_block.position.y = floor(size.y / 2)
 	block_holder.add_child(falling_block)
 	debris_count -= 1
 	debris_count_label.text = 'Debris: ' + str(debris_count)
 	falling_block.connect("debris_away", _on_ship_collected_debris)
-	
-	if debris_count <= 0:
-		end_scene()
 
 
 func emit_thrust() -> void:
@@ -52,6 +51,7 @@ func start_scene() -> void:
 		GameState.player_config["planet"]["get_debris_count"] is Callable:
 		debris_count = GameState.player_config["planet"]["get_debris_count"].call()
 	add_falling_block()
+	timer.start()
 
 
 func end_scene() -> void:
@@ -60,7 +60,7 @@ func end_scene() -> void:
 
 
 func change_scene() -> void:
-	get_tree().change_scene_to_file("res://scenes/at_planet_scene.tscn")
+	get_tree().change_scene_to_file("res://scenes/trading_scene.tscn")
 
 
 func _on_ship_change_can_rotate(value: bool):
@@ -73,4 +73,28 @@ func _on_ship_change_can_rotate(value: bool):
 
 
 func _on_ship_collected_debris():
-	add_falling_block()
+	print("Collected!")
+	if remaining_blocks():
+		return
+	if debris_count <= 0:
+		end_scene()
+	else:
+		add_falling_block()
+
+
+func _on_timer_timeout():
+	print("timerout")
+	if remaining_blocks():
+		return
+	if debris_count <= 0:
+		end_scene()
+	else:
+		add_falling_block()
+
+
+func remaining_blocks() -> bool:
+	for child in block_holder.get_children():
+		if child is FallingBlock:
+			return true
+	
+	return false

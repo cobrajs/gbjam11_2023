@@ -28,8 +28,7 @@ var planets: Array = [
 		"name": "Planet 2",
 		"position": Vector2(80, 45),
 		"connections": [0, 2, 3, 4],
-		"get_mineral": func():
-			return Consts.BLOCKS_MINERAL_IRON,
+		"get_mineral": null,
 		"get_debris_count": func():
 			return randi_range(8, 12),
 		"values": {

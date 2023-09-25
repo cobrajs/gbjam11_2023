@@ -148,8 +148,13 @@ func update_element_config() -> void:
 	
 	for group in groups_to_remove:
 		var group_value = group["items"].size()
+		if group_value == 5:
+			group_value = 6
+		if group_value == 6:
+			group_value = 8
 		GameState.player_config["hold"]["items"].append({
 			"type": group["type"],
+			"value": 10,
 			"count": group_value
 		})
 		clear_group(group)
@@ -250,6 +255,8 @@ func get_neighbors(position: Vector2) -> Dictionary:
 
 
 func on_block_collide(body: Node2D, block: Node2D, element_position: Vector2):
+	if not can_control:
+		return
 	if not body.get_parent() is FallingBlock:
 		return
 	var blocks: FallingBlock = body.get_parent()
@@ -261,18 +268,19 @@ func on_block_collide(body: Node2D, block: Node2D, element_position: Vector2):
 	else:
 		offset.y = sign(offset.y)
 		offset.x = 0
-	print("Velocities: ", blocks.velocity, velocity)
-	print("Offset: ", offset, "Rotated: ", offset.rotated(ship_rotation * PI / 2), "Raw: ", (body.global_position - block.global_position))
+	#print("Velocities: ", blocks.velocity, velocity)
+	#print("Offset: ", offset, "Rotated: ", offset.rotated(ship_rotation * PI / 2), "Raw: ", (body.global_position - block.global_position))
 	#offset = offset.rotated(ship_rotation * PI / 2)
 	offset = (-blocks.velocity).rotated(-ship_rotation * PI / 2).normalized().round()
-	print("Offset: ", (-blocks.velocity), "Rotated: ", offset)
+	#print("Offset: ", (-blocks.velocity), "Rotated: ", offset)
 	var start_position := Vector2(element_position) + offset
-	print("start position: ", start_position, body.position_id)
+	#print("start position: ", start_position, body.position_id)
 	for block_configs in blocks.get_element_blocks(body.position_id):
 		var new_position: Vector2 = start_position + block_configs.position.rotated(-ship_rotation * PI / 2).round()
-		print("New position: ", new_position, body.global_position, position)
+		#print("New position: ", new_position, body.global_position, position)
 		if element_config.has(new_position):
-			print("We've already got one! ", new_position, start_position)
+			#print("We've already got one! ", new_position, start_position)
+			pass
 		else:
 			element_config[new_position] = block_configs.config.duplicate()
 			element_config[new_position]["old_position"] = body.global_position + block_configs.position * ShipBlock.BLOCK_SIZE
@@ -282,8 +290,8 @@ func on_block_collide(body: Node2D, block: Node2D, element_position: Vector2):
 	
 	collected_debris.emit()
 
-
 func on_block_input_event(viewport: Node, event: InputEvent, shape_idx: int, block_position: Vector2) -> void:
+	return
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == 1:
 			print("You clicked me! Event: ", event, "Block position: ", block_position)

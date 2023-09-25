@@ -50,12 +50,11 @@ func _process(_delta):
 		sell_item(null)
 
 	if Input.is_action_just_pressed("game_b"):
-		get_tree().change_scene_to_file("res://scenes/at_planet_scene.tscn")
+		get_tree().change_scene_to_file("res://scenes/planet_picker_scene.tscn")
 
 
 func select_item(direction: int) -> void:
 	var new_selection = wrapi(selected + direction, 0, available_lines.filter(func(line): return line).size())
-	print("New selection: ", new_selection)
 	if new_selection != selected:
 		select(new_selection)
 
@@ -108,7 +107,7 @@ func update_items_list() -> void:
 		available_lines[current_line] = true
 		current_line += 1
 	
-	if selected > current_line:
+	if selected >= current_line:
 		select(0)
 	
 	if current_line <= 7:

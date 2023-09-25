@@ -292,5 +292,9 @@ frame = 62
 position = Vector2(35, 0)
 frame = 63
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="change_can_rotate" from="Ship" to="." method="_on_ship_change_can_rotate"]
 [connection signal="collected_debris" from="Ship" to="." method="_on_ship_collected_debris"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
