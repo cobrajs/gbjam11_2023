@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://cltubv4ugugw1"]
+
+[ext_resource type="Script" path="res://scenes/planet_picker_scene.gd" id="1_xd3hu"]
+[ext_resource type="Texture2D" uid="uid://duwidieqa5kgh" path="res://assets/tiles.png" id="2_8xo2v"]
+[ext_resource type="Texture2D" uid="uid://bwi03ea4wrqe5" path="res://assets/planet_picker.png" id="3_3cqtl"]
+[ext_resource type="PackedScene" uid="uid://pn0f4vat4o6u" path="res://assets/tiles.tscn" id="4_h3je2"]
+[ext_resource type="Theme" uid="uid://cdhbrsvlgiybp" path="res://theme.tres" id="5_0xxp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2lsa"]
+atlas = ExtResource("2_8xo2v")
+region = Rect2(0, 80, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7l2a"]
+atlas = ExtResource("2_8xo2v")
+region = Rect2(20, 80, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrrrl"]
+atlas = ExtResource("2_8xo2v")
+region = Rect2(40, 80, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00rsi"]
+atlas = ExtResource("2_8xo2v")
+region = Rect2(20, 80, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6y3j8"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_o2lsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7l2a")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_wrrrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00rsi")
+}],
+"loop": true,
+"name": &"selector",
+"speed": 4.0
+}]
+
+[node name="PlanetPickerScene" type="Node2D"]
+script = ExtResource("1_xd3hu")
+
+[node name="Selector" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6y3j8")
+animation = &"selector"
+autoplay = "selector"
+frame_progress = 0.675745
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_3cqtl")
+centered = false
+
+[node name="TravelStuff" type="Node2D" parent="."]
+
+[node name="TravelButton" parent="TravelStuff" instance=ExtResource("4_h3je2")]
+position = Vector2(154, 134)
+
+[node name="TravelLabel" type="Label" parent="TravelStuff"]
+offset_left = 112.0
+offset_top = 130.0
+offset_right = 152.0
+offset_bottom = 153.0
+theme = ExtResource("5_0xxp8")
+text = "Travel"
+
+[node name="PlanetInfo" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 110.0
+offset_right = 123.0
+offset_bottom = 143.0
+theme = ExtResource("5_0xxp8")
+text = "12345123451234512345 
+12345123451234512
+12345123451234512"
+
+[node name="Title" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 124.0
+offset_bottom = 37.0
+theme = ExtResource("5_0xxp8")
+theme_override_colors/font_color = Color(0.215686, 0.164706, 0.223529, 1)
+text = "Choose a planet"

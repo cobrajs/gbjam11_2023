@@ -1,0 +1,296 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3ep6aj1h6i0j"]
+
+[ext_resource type="PackedScene" uid="uid://cpqqabrpwgjxo" path="res://game_objects/ship.tscn" id="1_7p6mj"]
+[ext_resource type="Script" path="res://scenes/space_flight_scene.gd" id="1_64su4"]
+[ext_resource type="PackedScene" uid="uid://dwgalxh24si7b" path="res://game_objects/star_field.tscn" id="1_yftgv"]
+[ext_resource type="Theme" uid="uid://cdhbrsvlgiybp" path="res://theme.tres" id="4_eyacl"]
+[ext_resource type="PackedScene" uid="uid://pn0f4vat4o6u" path="res://assets/tiles.tscn" id="4_ussxq"]
+
+[sub_resource type="Animation" id="Animation_diptx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:can_control")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ship:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(79, 71)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StarField:moving_speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [40.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Controls:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4gehr"]
+resource_name = "ship_enter_scene"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:can_control")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ship:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.378929, 4.75683),
+"update": 0,
+"values": [Vector2(-10, 90), Vector2(130, 72)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_thrust"
+}, {
+"args": [],
+"method": &"start_scene"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StarField:moving_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(0.258816, 1),
+"update": 0,
+"values": [50.0, 10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Controls:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_4i0ob"]
+resource_name = "ship_exit_scene"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:can_control")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ship:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(0.112656, 4.75683),
+"update": 2,
+"values": [Vector2(50, 90), Vector2(190, 54)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_thrust"
+}, {
+"args": [],
+"method": &"change_scene"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StarField:moving_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(5.09824, 1.68179),
+"update": 0,
+"values": [10.0, 50.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Controls:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ef8o"]
+_data = {
+"RESET": SubResource("Animation_diptx"),
+"ship_enter_scene": SubResource("Animation_4gehr"),
+"ship_exit_scene": SubResource("Animation_4i0ob")
+}
+
+[node name="SpaceFlightScene" type="Node2D"]
+script = ExtResource("1_64su4")
+
+[node name="StarField" parent="." instance=ExtResource("1_yftgv")]
+particle_count = 30
+
+[node name="Ship" parent="." instance=ExtResource("1_7p6mj")]
+position = Vector2(79, 71)
+
+[node name="BlockHolder" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ship_enter_scene"
+libraries = {
+"": SubResource("AnimationLibrary_3ef8o")
+}
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 131.0
+offset_right = 3.0
+offset_bottom = 131.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="DebrisCount" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 59.0
+offset_bottom = 14.0
+theme = ExtResource("4_eyacl")
+text = "Debris: 10"
+
+[node name="Controls" type="Node2D" parent="."]
+position = Vector2(120, 138)
+
+[node name="AButton" parent="Controls" instance=ExtResource("4_ussxq")]
+
+[node name="BButton" parent="Controls" instance=ExtResource("4_ussxq")]
+position = Vector2(24, 0)
+frame = 61
+
+[node name="AButtonAction" parent="Controls" instance=ExtResource("4_ussxq")]
+position = Vector2(11, 0)
+frame = 62
+
+[node name="BButtonAction" parent="Controls" instance=ExtResource("4_ussxq")]
+position = Vector2(35, 0)
+frame = 63
+
+[connection signal="change_can_rotate" from="Ship" to="." method="_on_ship_change_can_rotate"]
+[connection signal="collected_debris" from="Ship" to="." method="_on_ship_collected_debris"]

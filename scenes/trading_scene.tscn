@@ -1,0 +1,170 @@
+[gd_scene load_steps=8 format=3 uid="uid://iwh36l077tm2"]
+
+[ext_resource type="Script" path="res://scenes/trading_scene.gd" id="1_j4mwt"]
+[ext_resource type="Texture2D" uid="uid://kpithr3aodob" path="res://assets/trading_screen.png" id="2_f5c7s"]
+[ext_resource type="PackedScene" uid="uid://pn0f4vat4o6u" path="res://assets/tiles.tscn" id="3_2gtar"]
+[ext_resource type="Theme" uid="uid://cdhbrsvlgiybp" path="res://theme.tres" id="4_orj0f"]
+
+[sub_resource type="Animation" id="Animation_6t2c2"]
+resource_name = "selector"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectorHolder/Selector:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ietdn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectorHolder/Selector:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccuss"]
+_data = {
+"RESET": SubResource("Animation_ietdn"),
+"selector": SubResource("Animation_6t2c2")
+}
+
+[node name="TradingScene" type="Node2D"]
+script = ExtResource("1_j4mwt")
+
+[node name="TradingScreen" type="Sprite2D" parent="."]
+texture = ExtResource("2_f5c7s")
+centered = false
+
+[node name="SelectorHolder" type="Node2D" parent="."]
+position = Vector2(9, 25)
+
+[node name="Selector" parent="SelectorHolder" instance=ExtResource("3_2gtar")]
+frame = 65
+
+[node name="Title" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 27.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.215686, 0.164706, 0.223529, 1)
+text = "Trading"
+
+[node name="Bank" type="Label" parent="."]
+offset_left = 115.0
+offset_top = 4.0
+offset_right = 157.0
+offset_bottom = 27.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.215686, 0.164706, 0.223529, 1)
+text = "$0"
+horizontal_alignment = 2
+
+[node name="Line1" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 21.0
+offset_right = 64.0
+offset_bottom = 44.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Line2" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 36.0
+offset_right = 64.0
+offset_bottom = 59.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Line3" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 53.0
+offset_right = 64.0
+offset_bottom = 76.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Line4" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 69.0
+offset_right = 64.0
+offset_bottom = 92.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Line5" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 85.0
+offset_right = 64.0
+offset_bottom = 108.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Line6" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 101.0
+offset_right = 64.0
+offset_bottom = 124.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Line7" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 117.0
+offset_right = 64.0
+offset_bottom = 140.0
+theme = ExtResource("4_orj0f")
+theme_override_colors/font_color = Color(0.470588, 0.513726, 0.454902, 1)
+text = "iron"
+
+[node name="Controls" type="Node2D" parent="."]
+position = Vector2(80, 133)
+
+[node name="AButton" parent="Controls" instance=ExtResource("3_2gtar")]
+position = Vector2(5, 5)
+
+[node name="AButtonAction" type="Label" parent="Controls"]
+offset_left = 13.0
+offset_top = 1.0
+offset_right = 53.0
+offset_bottom = 24.0
+theme = ExtResource("4_orj0f")
+text = "Sell"
+
+[node name="BButton" parent="Controls" instance=ExtResource("3_2gtar")]
+position = Vector2(47, 5)
+frame = 61
+
+[node name="BButtonAction" type="Label" parent="Controls"]
+offset_left = 55.0
+offset_top = 1.0
+offset_right = 95.0
+offset_bottom = 24.0
+theme = ExtResource("4_orj0f")
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ccuss")
+}

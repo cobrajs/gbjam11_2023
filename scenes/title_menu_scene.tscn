@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b46xq1p582qjx"]
+
+[ext_resource type="Script" path="res://scenes/title_menu_scene.gd" id="1_dm5ut"]
+[ext_resource type="Texture2D" uid="uid://q68li11y8eqx" path="res://assets/Logo.png" id="1_mss5r"]
+[ext_resource type="Theme" uid="uid://cdhbrsvlgiybp" path="res://theme.tres" id="3_qiie1"]
+
+[node name="TitleMenuScene" type="Node2D"]
+script = ExtResource("1_dm5ut")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(80, 43)
+texture = ExtResource("1_mss5r")
+
+[node name="Menu" type="Node2D" parent="."]
+position = Vector2(63, 86)
+
+[node name="Start" type="Label" parent="Menu"]
+offset_left = -9.0
+offset_top = 15.0
+offset_right = 51.0
+offset_bottom = 38.0
+theme = ExtResource("3_qiie1")
+text = "Start game"
+
+[node name="Start2" type="Label" parent="Menu"]
+offset_left = -19.0
+offset_top = 1.0
+offset_right = 65.0
+offset_bottom = 24.0
+theme = ExtResource("3_qiie1")
+text = "Press start to"
+
+[node name="Help" type="Label" parent="Menu"]
+visible = false
+offset_top = 16.0
+offset_right = 60.0
+offset_bottom = 39.0
+theme = ExtResource("3_qiie1")
+text = "Help"

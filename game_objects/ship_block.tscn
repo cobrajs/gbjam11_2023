@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://6tjj70bicx4w"]
+
+[ext_resource type="Script" path="res://game_objects/ship_block.gd" id="1_6k6ip"]
+[ext_resource type="Texture2D" uid="uid://duwidieqa5kgh" path="res://assets/tiles.png" id="2_2wk20"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s437d"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls4yv"]
+atlas = ExtResource("2_2wk20")
+region = Rect2(40, 0, 4, 4)
+
+[node name="ShipBlock" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_6k6ip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2wk20")
+hframes = 10
+vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s437d")
+
+[node name="OverRendering" type="Node2D" parent="."]
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.47
+fixed_fps = 30
+draw_order = 1
+texture = SubResource("AtlasTexture_ls4yv")
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+damping_min = 30.0
+damping_max = 40.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
